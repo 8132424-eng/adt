@@ -1,0 +1,423 @@
+``html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Political Philosophers · Quotes</title>
+  <!-- Google Fonts for clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- GLOBAL STYLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f9f7f4;
+      color: #1e1e2a;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 2rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      padding: 2rem 2rem 2.5rem;
+    }
+
+    /* ---------- LANGUAGE SELECTOR (simple placeholder) ---------- */
+    .lang-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      color: #4a4a5a;
+    }
+    .lang-bar span {
+      background: #eaeef2;
+      padding: 0.25rem 0.75rem;
+      border-radius: 30px;
+      cursor: default;
+      transition: background 0.2s;
+    }
+    .lang-bar span.active {
+      background: #1e1e2a;
+      color: white;
+      font-weight: 500;
+    }
+
+    /* ---------- TYPOGRAPHY & LINKS ---------- */
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: #0e1a2b;
+    }
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+      border-left: 5px solid #b7a68b;
+      padding-left: 1rem;
+    }
+    .subhead {
+      color: #4f5b6b;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ---------- TOP NAVIGATION (duplicated in menu and buttons) ---------- */
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #e4ddd4;
+    }
+    .top-nav a {
+      font-weight: 500;
+      padding: 0.4rem 0.2rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      color: #2c3e4e;
+    }
+    .top-nav a:hover {
+      border-bottom-color: #b7a68b;
+      color: #0a1c2c;
+    }
+
+    /* ---------- HOME PAGE: AUTHOR CARDS / MENU ---------- */
+    .authors-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .author-card {
+      flex: 1 1 220px;
+      background: #f4f1ec;
+      padding: 1.75rem 1.5rem;
+      border-radius: 1.5rem;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e5dfd7;
+      text-align: center;
+    }
+    .author-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 22px -8px rgba(0, 0, 0, 0.1);
+      background: #f0ebe4;
+    }
+    .author-card h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #1e2a36;
+    }
+    .author-card .years {
+      font-size: 0.9rem;
+      color: #6b6b7a;
+      margin-bottom: 1.2rem;
+    }
+    .author-card .btn {
+      display: inline-block;
+      background: #1e2a36;
+      color: white;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: background 0.2s;
+    }
+    .author-card .btn:hover {
+      background: #2f4050;
+    }
+
+    /* ---------- QUOTE PAGE STYLES ---------- */
+    .quote-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .quote-item {
+      background: #faf8f5;
+      padding: 1.5rem 1.8rem;
+      border-radius: 1.5rem;
+      border-left: 6px solid #b7a68b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+    .quote-text {
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+      color: #18222e;
+      line-height: 1.6;
+    }
+    .quote-source {
+      font-size: 0.9rem;
+      color: #5a6675;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .quote-lang {
+      background: #e4ddd4;
+      padding: 0.2rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #2c3e4e;
+    }
+
+    /* ---------- BACK LINK ---------- */
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-weight: 500;
+      color: #4f5b6b;
+      border-bottom: 1px dashed #b7a68b;
+    }
+    .back-link:hover {
+      color: #1e1e2a;
+      border-bottom-style: solid;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem 1.25rem; }
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.4rem; }
+      .quote-item { padding: 1.25rem; }
+      .quote-text { font-size: 1.05rem; }
+    }
+
+    /* hide all pages by default, only .active page visible */
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- LANGUAGE SELECTOR (visual only — translation logic not implemented) -->
+  <div class="lang-bar">
+    <span class="active">EN</span>
+    <span>FI</span>
+    <span>SV</span>
+    <span>ET</span>
+    <span>RU</span>
+  </div>
+
+  <!-- TOP NAVIGATION (duplicated in home card buttons) -->
+  <!-- Menu items will be dynamically duplicated via JS, but static fallback works too -->
+  <nav class="top-nav" id="topNav">
+    <a href="#" data-page="home">Home</a>
+    <a href="#" data-page="tocqueville">Alexis de Tocqueville</a>
+    <a href="#" data-page="jefferson">Thomas Jefferson</a>
+    <!-- Add new menu items here as simple <a> with data-page -->
+  </nav>
+
+  <!-- ========== PAGE: HOME ========== -->
+  <div id="home" class="page active">
+    <h1>Useful quotes from great political philosophers</h1>
+    <p class="subhead">A small curated collection — original English texts with multilingual interface.</p>
+
+    <!-- AUTHOR CARDS (also act as menu buttons) -->
+    <div class="authors-grid">
+      <div class="author-card">
+        <h3>Alexis de Tocqueville</h3>
+        <div class="years">1805 – 1859</div>
+        <a href="#" class="btn" data-page="tocqueville">Quotes →</a>
+      </div>
+      <div class="author-card">
+        <h3>Thomas Jefferson</h3>
+        <div class="years">1743 – 1826</div>
+        <a href="#" class="btn" data-page="jefferson">Quotes →</a>
+      </div>
+      <!-- Add more author cards here: copy .author-card block, change title, years, and data-page -->
+    </div>
+  </div>
+
+  <!-- ========== PAGE: TOCQUEVILLE ========== -->
+  <div id="tocqueville" class="page">
+    <h2>Alexis de Tocqueville</h2>
+    <div class="quote-list">
+      <!-- QUOTE 1 -->
+      <div class="quote-item">
+        <div class="quote-text">“The greatness of America lies not in being more enlightened than any other nation, but rather in her ability to repair her faults.”</div>
+        <div class="quote-source">
+          <span>— Alexis de Tocqueville, Democracy in America</span>
+          <span class="quote-lang">EN</span>
+        </div>
+      </div>
+      <!-- QUOTE 2 -->
+      <div class="quote-item">
+        <div class="quote-text">“I must confess that in America I saw more than America; I sought the image of democracy itself, with its inclinations, its character, its prejudices, and its passions.”</div>
+        <div class="quote-source">
+          <span>— Alexis de Tocqueville, Democracy in America</span>
+          <span class="quote-lang">EN</span>
+        </div>
+      </div>
+      <!-- QUOTE 3 -->
+      <div class="quote-item">
+        <div class="quote-text">“Liberty cannot be established without morality, nor morality without faith.”</div>
+        <div class="quote-source">
+          <span>— Alexis de Tocqueville</span>
+          <span class="quote-lang">EN</span>
+        </div>
+      </div>
+      <!-- Add more .quote-item blocks here -->
+    </div>
+    <a href="#" class="back-link" data-page="home">← Back to home</a>
+  </div>
+
+  <!-- ========== PAGE: JEFFERSON ========== -->
+  <div id="jefferson" class="page">
+    <h2>Thomas Jefferson</h2>
+    <div class="quote-list">
+      <!-- QUOTE 1 -->
+      <div class="quote-item">
+        <div class="quote-text">“I cannot live without books.”</div>
+        <div class="quote-source">
+          <span>— Thomas Jefferson, letter to John Adams</span>
+          <span class="quote-lang">EN</span>
+        </div>
+      </div>
+      <!-- QUOTE 2 -->
+      <div class="quote-item">
+        <div class="quote-text">“The tree of liberty must be refreshed from time to time with the blood of patriots and tyrants.”</div>
+        <div class="quote-source">
+          <span>— Thomas Jefferson, letter to William S. Smith</span>
+          <span class="quote-lang">EN</span>
+        </div>
+      </div>
+      <!-- QUOTE 3 -->
+      <div class="quote-item">
+        <div class="quote-text">“In matters of style, swim with the current; in matters of principle, stand like a rock.”</div>
+        <div class="quote-source">
+          <span>— Thomas Jefferson (attributed)</span>
+          <span class="quote-lang">EN</span>
+        </div>
+      </div>
+      <!-- Add more .quote-item blocks here -->
+    </div>
+    <a href="#" class="back-link" data-page="home">← Back to home</a>
+  </div>
+
+  <!-- ========== FOOTER NOTE ========== -->
+  <div style="margin-top: 2.5rem; font-size: 0.8rem; color: #8a8a98; border-top: 1px solid #e4ddd4; padding-top: 1.5rem; text-align: center;">
+    Political philosophers quotes · original English · interface in EN, FI, SV, ET, RU
+  </div>
+
+</div>
+
+<!-- ========== JAVASCRIPT: page navigation ========== -->
+<script>
+  (function() {
+    // ---------- 1. HANDLE PAGE SWITCHING ----------
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('[data-page]'); // both top nav and any data-page links
+
+    function showPage(pageId) {
+      // hide all pages
+      pages.forEach(p => p.classList.remove('active'));
+      // show selected page
+      const target = document.getElementById(pageId);
+      if (target) {
+        target.classList.add('active');
+      } else {
+        // fallback: if page not found, go home
+        document.getElementById('home')?.classList.add('active');
+      }
+      // optional: scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // attach click listeners to all elements with data-page (links, buttons)
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const pageId = this.getAttribute('data-page');
+        if (pageId) {
+          showPage(pageId);
+        }
+      });
+    });
+
+    // ---------- 2. ENSURE HOME IS ACTIVE ON LOAD ----------
+    // if no page is active, show home
+    if (!document.querySelector('.page.active')) {
+      document.getElementById('home')?.classList.add('active');
+    }
+
+    // ---------- 3. (OPTIONAL) ADD NEW AUTHORS EASILY ----------
+    // To add a new author:
+    // 1. Add a new <div id="newauthor" class="page"> ... </div> with quotes.
+    // 2. Add a corresponding <a href="#" data-page="newauthor">Name</a> in the top nav.
+    // 3. Optionally add an author-card in the home page grid with data-page="newauthor".
+    // The script automatically binds any element with data-page attribute.
+    // For now, everything is static, but the pattern is ready for expansion.
+
+    console.log('Quotes site ready — add new authors by duplicating page divs and menu links.');
+  })();
+</script>
+
+<!-- ========== HOW TO ADD NEW CONTENT ========== -->
+<!--
+  === ADDING A NEW AUTHOR PAGE ===
+  1. Copy the entire <div id="newauthor" class="page"> ... </div> block (e.g., tocqueville).
+  2. Change the id to something unique, e.g., "machiavelli".
+  3. Update the <h2> with the philosopher's name.
+  4. Replace the .quote-item blocks with new quotes.
+  5. In the top <nav>, add: <a href="#" data-page="machiavelli">Niccolò Machiavelli</a>
+  6. In the .authors-grid on home page, add a new .author-card with data-page="machiavelli".
+     (Copy the card and edit the title, years, and data-page attribute.)
+  
+  === ADDING A NEW QUOTE ===
+  Inside any .quote-list, copy this block:
+    <div class="quote-item">
+      <div class="quote-text">“Your quote here.”</div>
+      <div class="quote-source">
+        <span>— Author, Source</span>
+        <span class="quote-lang">EN</span>
+      </div>
+    </div>
+  Paste it and modify the text. The .quote-lang shows the original language (EN for now).
+  For translations, you would later add data attributes or separate elements.
+  
+  === TRANSLATION NOTE ===
+  The interface currently shows language pills (EN, FI, SV, ET, RU) but no automatic translation.
+  To support translations, you could:
+    - Store each quote in multiple languages with data attributes.
+    - Or use a simple JS object and switch text based on selected language.
+  For now, the code provides a clean structure to add original English quotes and expand later.
+-->
+</body>
+</html>
+```
