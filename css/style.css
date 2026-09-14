@@ -1,0 +1,97 @@
+/* ============================================================
+   GLOBAL STYLES — shared by all pages
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #f9f7f4; color: #1e1e2a; line-height: 1.5;
+  padding: 1.5rem 1rem;
+}
+.container {
+  max-width: 1100px; margin: 0 auto; background: #fff;
+  border-radius: 2rem; box-shadow: 0 12px 30px rgba(0,0,0,.05);
+  padding: 2rem 2rem 2.5rem;
+}
+
+/* ---------- Language bar ---------- */
+.lang-bar {
+  display: flex; justify-content: flex-end; gap: .5rem;
+  margin-bottom: 1.5rem; font-size: .9rem;
+}
+.lang-bar button {
+  background: #eaeef2; border: none; padding: .35rem .85rem;
+  border-radius: 30px; cursor: pointer; font: inherit;
+  transition: background .2s, color .2s;
+}
+.lang-bar button:hover { background: #dde3e9; }
+.lang-bar button.active { background: #1e1e2a; color: #fff; font-weight: 500; }
+
+/* ---------- Typography ---------- */
+h1 { font-size: 2.2rem; font-weight: 600; margin-bottom: .5rem; color: #0e1a2b; }
+h2 {
+  font-size: 1.7rem; font-weight: 500; margin-bottom: 1.25rem;
+  border-left: 5px solid #b7a68b; padding-left: 1rem;
+}
+.subhead { color: #4f5b6b; margin-bottom: 2rem; font-size: 1.1rem; }
+
+/* ---------- Top navigation ---------- */
+.top-nav {
+  display: flex; flex-wrap: wrap; gap: .75rem 1.5rem;
+  margin-bottom: 2rem; padding-bottom: .75rem;
+  border-bottom: 2px solid #e4ddd4;
+}
+.top-nav a {
+  font-weight: 500; padding: .4rem .2rem; color: #2c3e4e;
+  border-bottom: 2px solid transparent; transition: border-color .2s;
+  text-decoration: none;
+}
+.top-nav a:hover { border-bottom-color: #b7a68b; }
+
+/* ---------- Home: author cards ---------- */
+.authors-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem; }
+.author-card {
+  flex: 1 1 220px; background: #f4f1ec; padding: 1.75rem 1.5rem;
+  border-radius: 1.5rem; border: 1px solid #e5dfd7; text-align: center;
+  transition: transform .15s, box-shadow .2s;
+}
+.author-card:hover { transform: translateY(-3px); box-shadow: 0 12px 22px -8px rgba(0,0,0,.1); }
+.author-card h3 { font-size: 1.5rem; font-weight: 500; margin-bottom: .5rem; }
+.author-card .years { font-size: .9rem; color: #6b6b7a; margin-bottom: 1.2rem; }
+.author-card .btn {
+  display: inline-block; background: #1e2a36; color: #fff;
+  padding: .5rem 1.4rem; border-radius: 40px; font-size: .9rem;
+  text-decoration: none; transition: background .2s;
+}
+.author-card .btn:hover { background: #2f4050; }
+
+/* ---------- Author page: quotes ---------- */
+.quote-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; }
+.quote-item {
+  background: #faf8f5; padding: 1.5rem 1.8rem; border-radius: 1.5rem;
+  border-left: 6px solid #b7a68b;
+}
+.quote-text { font-size: 1.2rem; font-style: italic; margin-bottom: .8rem; line-height: 1.6; }
+.quote-source {
+  font-size: .9rem; color: #5a6675; display: flex;
+  justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+}
+.quote-lang {
+  background: #e4ddd4; padding: .2rem .75rem; border-radius: 20px;
+  font-size: .75rem; font-weight: 600; text-transform: uppercase;
+}
+
+/* ---------- Back link ---------- */
+.back-link {
+  display: inline-block; margin-top: 2rem; color: #4f5b6b;
+  border-bottom: 1px dashed #b7a68b; text-decoration: none;
+}
+.back-link:hover { color: #1e1e2a; border-bottom-style: solid; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .container { padding: 1.5rem 1.25rem; }
+  h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; }
+  .quote-item { padding: 1.25rem; } .quote-text { font-size: 1.05rem; }
+}
+
