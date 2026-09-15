@@ -34,13 +34,13 @@ registerAuthorQuotes("jefferson", [
     }
   },
   
-// --------------------------------------------------------
+  // --------------------------------------------------------
   // Quote 3
   // --------------------------------------------------------
   {
     fi: "Pidämme näitä totuuksia itsestään selvinä: että kaikki ihmiset on luotu tasa-arvoisiksi, että heidän Luojansa on suonut heille tiettyjä luovuttamattomia oikeuksia, että näihin oikeuksiin kuuluvat elämä, vapaus ja onnen tavoittelu.",
     sv: "Vi håller dessa sanningar för självklara, att alla människor har skapats lika, att de av sin Skapare har utrustats med vissa oförytterliga rättigheter, att bland dessa finns liv, frihet och strävan efter lycka.",
-    en: "We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness..",
+    en: "We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.",
     source: {
       fi: "Yhdysvaltain itsenäisyysjulistus (1776)",
       sv: "USA:s självständighetsförklaring (1776)",
